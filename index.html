@@ -9,17 +9,7 @@
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="Initialize Array2D with 1 In python numpy, 1
-tile(1, (5,2)) will give 1
-2
-3
-4
-5
-> array([[1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1]]) similarly &hellip;">
+  <meta name="description" content="Keep input datasource as list of list It is always better to define input data source in list of list for maths calculation. It is easy to convert &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +65,88 @@ tile(1, (5,2)) will give 1
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/fsharpscribbles/blog/2014/06/keep-input-data-source-as-list-of-list/">Keep input data source as list of list</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-16T00:39:03+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Keep input datasource as list of list</h2>
+
+<p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
+For example,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">d1</span> <span class="o">=</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">.;</span> <span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">3</span><span class="o">.;</span> <span class="mi">1</span><span class="o">.]];;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will result</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val d1 : float list list = [[1.0; 2.0]; [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>This can be easily be converted as Matrix.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">matrix</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Matrix</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : matrix = matrix [[1.0; 2.0]
+</span><span class='line'>                          [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>To convert into Array2D by</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">array2D</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Array2D</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : float [,] = [[1.0; 2.0]
+</span><span class='line'>                      [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -165,6 +237,10 @@ tile(1, (5,2)) will give 1
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/fsharpscribbles/blog/2014/06/keep-input-data-source-as-list-of-list/">Keep input data source as list of list</a>
+      </li>
     
       <li class="post">
         <a href="/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1/">Create m x n array initialized with 1</a>

@@ -5,21 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Create m x n array initialized with 1 - udooz F# Scribbles</title>
+  <title>Keep input data source as list of list - udooz F# Scribbles</title>
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="Initialize Array2D with 1 In python numpy, 1
-tile(1, (5,2)) will give 1
-2
-3
-4
-5
-> array([[1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1]]) similarly &hellip;">
+  <meta name="description" content="Keep input datasource as list of list It is always better to define input data source in list of list for maths calculation. It is easy to convert &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,7 +18,7 @@ tile(1, (5,2)) will give 1
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1">
+  <link rel="canonical" href="http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list">
   <link href="/fsharpscribbles/favicon.png" rel="icon">
   <link href="/fsharpscribbles/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="udooz F# Scribbles" type="application/atom+xml">
@@ -78,7 +68,7 @@ tile(1, (5,2)) will give 1
   
   <header>
     
-      <h1 class="entry-title">Create m x n array initialized with 1</h1>
+      <h1 class="entry-title">Keep input data source as list of list</h1>
     
     
       <p class="meta">
@@ -94,55 +84,59 @@ tile(1, (5,2)) will give 1
   
 
 
-<time datetime="2014-06-15T09:29:13+05:30" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
+<time datetime="2014-06-16T00:39:03+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>Initialize Array2D with 1</h2>
+<div class="entry-content"><h2>Keep input datasource as list of list</h2>
 
-<p>In python numpy,</p>
+<p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
+For example,</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">d1</span> <span class="o">=</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">.;</span> <span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">3</span><span class="o">.;</span> <span class="mi">1</span><span class="o">.]];;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will give</p>
+<p>will result</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> array([[1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1]])</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val d1 : float list list = [[1.0; 2.0]; [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
 
 
-<p>similarly in F#</p>
+<h3>This can be easily be converted as Matrix.</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="nn">Array2D</span><span class="p">.</span><span class="n">init</span> <span class="mi">5</span> <span class="mi">2</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">j</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">)</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">matrix</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Matrix</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will give</p>
+<p>results</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> val it : int [,] = [[1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]]</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : matrix = matrix [[1.0; 2.0]
+</span><span class='line'>                          [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>To convert into Array2D by</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">array2D</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Array2D</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : float [,] = [[1.0; 2.0]
+</span><span class='line'>                      [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
 
 </div>
 
@@ -166,7 +160,7 @@ tile(1, (5,2)) will give 1
   
 
 
-<time datetime="2014-06-15T09:29:13+05:30" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
+<time datetime="2014-06-16T00:39:03+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
       
 
 <span class="categories">
@@ -180,7 +174,7 @@ tile(1, (5,2)) will give 1
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/" data-via="udooz" data-counturl="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list/" data-via="udooz" data-counturl="http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list/" >Tweet</a>
   
   
   
@@ -191,8 +185,8 @@ tile(1, (5,2)) will give 1
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1/" title="Previous Post: Create m x n array initialized with 1">&laquo; Create m x n array initialized with 1</a>
       
-        <a class="basic-alignment right" href="/fsharpscribbles/blog/2014/06/keep-input-data-source-as-list-of-list/" title="Next Post: Keep input data source as list of list">Keep input data source as list of list &raquo;</a>
       
     </p>
   </footer>
