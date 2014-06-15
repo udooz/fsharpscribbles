@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Array 2D | udooz F# Scribbles]]></title>
-  <link href="https://github.com/udooz/fsharpscribbles/blog/categories/array-2d/atom.xml" rel="self"/>
-  <link href="https://github.com/udooz/fsharpscribbles/"/>
-  <updated>2014-06-16T00:09:29+05:30</updated>
-  <id>https://github.com/udooz/fsharpscribbles/</id>
+  <link href="http://udooz.github.io/fsharpscribbles//blog/categories/array-2d/atom.xml" rel="self"/>
+  <link href="http://udooz.github.io/fsharpscribbles//"/>
+  <updated>2014-06-16T00:28:42+05:30</updated>
+  <id>http://udooz.github.io/fsharpscribbles//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Create m x n array initialized with 1]]></title>
-    <link href="https://github.com/udooz/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1/"/>
+    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/"/>
     <updated>2014-06-15T09:29:13+05:30</updated>
-    <id>https://github.com/udooz/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1</id>
+    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1</id>
     <content type="html"><![CDATA[<h2>Initialize Array2D with 1</h2>
 
 <p>In python numpy,</p>
