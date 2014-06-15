@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Machine Learning | udooz F# Scribbles]]></title>
   <link href="http://udooz.github.io/fsharpscribbles//blog/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://udooz.github.io/fsharpscribbles//"/>
-  <updated>2014-06-16T00:28:42+05:30</updated>
+  <updated>2014-06-16T00:35:55+05:30</updated>
   <id>http://udooz.github.io/fsharpscribbles//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
@@ -27,7 +27,20 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 will give</p>
 
-<p><blockquote><p></p></p><p><blockquote><p>array([[1, 1],<br/>   [1, 1],<br/>   [1, 1],<br/>   [1, 1],<br/>   [1, 1]])</p></blockquote></p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;p>array([[1, 1],
+</span><span class='line'>   [1, 1],
+</span><span class='line'>   [1, 1],
+</span><span class='line'>   [1, 1],
+</span><span class='line'>   [1, 1]])</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>similarly in F#</p>
 
@@ -36,7 +49,28 @@ will give</p>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>will give
-<blockquote><p></p></p><p><blockquote><p>val it : int [,] = [[1; 1]</p></p><p><pre><code>                [1; 1]<br/>                [1; 1]<br/>                [1; 1]<br/>                [1; 1]]<br/></code></pre></p><p><p></p></blockquote></p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;p>val it : int [,] = [[1; 1]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                [1; 1]
+</span><span class='line'>                [1; 1]
+</span><span class='line'>                [1; 1]
+</span><span class='line'>                [1; 1]]
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 ]]></content>
   </entry>
   

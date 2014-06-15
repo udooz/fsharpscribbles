@@ -4,7 +4,7 @@
   <title><![CDATA[udooz F# Scribbles]]></title>
   <link href="http://udooz.github.io/fsharpscribbles//atom.xml" rel="self"/>
   <link href="http://udooz.github.io/fsharpscribbles//"/>
-  <updated>2014-06-16T00:28:42+05:30</updated>
+  <updated>2014-06-16T00:35:55+05:30</updated>
   <id>http://udooz.github.io/fsharpscribbles//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
@@ -29,7 +29,16 @@
 
 <p>will give</p>
 
-<blockquote><p>> array([[1, 1],<br/>>    [1, 1],<br/>>    [1, 1],<br/>>    [1, 1],<br/>>    [1, 1]])</p></blockquote>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>> array([[1, 1],
+</span><span class='line'>>    [1, 1],
+</span><span class='line'>>    [1, 1],
+</span><span class='line'>>    [1, 1],
+</span><span class='line'>>    [1, 1]])</span></code></pre></td></tr></table></div></figure>
 
 
 <p>similarly in F#</p>
@@ -41,7 +50,16 @@
 
 <p>will give</p>
 
-<blockquote><p>> val it : int [,] = [[1; 1]<br/>>                     [1; 1]<br/>>                     [1; 1]<br/>>                     [1; 1]<br/>>                     [1; 1]]</p></blockquote>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>> val it : int [,] = [[1; 1]
+</span><span class='line'>>                     [1; 1]
+</span><span class='line'>>                     [1; 1]
+</span><span class='line'>>                     [1; 1]
+</span><span class='line'>>                     [1; 1]]</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
