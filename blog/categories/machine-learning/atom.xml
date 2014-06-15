@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Machine Learning | udooz F# Scribbles]]></title>
+  <link href="https://github.com/udooz/fsharpscribbles/blog/categories/machine-learning/atom.xml" rel="self"/>
+  <link href="https://github.com/udooz/fsharpscribbles/"/>
+  <updated>2014-06-16T00:09:29+05:30</updated>
+  <id>https://github.com/udooz/fsharpscribbles/</id>
+  <author>
+    <name><![CDATA[M Sheik Uduman Ali]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Create m x n array initialized with 1]]></title>
+    <link href="https://github.com/udooz/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1/"/>
+    <updated>2014-06-15T09:29:13+05:30</updated>
+    <id>https://github.com/udooz/fsharpscribbles/blog/2014/06/create-mxn-array-initialized-with-1</id>
+    <content type="html"><![CDATA[<h2>Initialize Array2D with 1</h2>
+
+<p>In python numpy,</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+will give</p>
+
+<p><blockquote><p></p></p><p><blockquote><p>array([[1, 1],<br/>   [1, 1],<br/>   [1, 1],<br/>   [1, 1],<br/>   [1, 1]])</p></blockquote></p></blockquote>
+
+<p>similarly in F#</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="nn">Array2D</span><span class="p">.</span><span class="n">init</span> <span class="mi">5</span> <span class="mi">2</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="o">;&gt;</span> <span class="mi">1</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>will give
+<blockquote><p></p></p><p><blockquote><p>val it : int [,] = [[1; 1]</p></p><p><pre><code>                [1; 1]<br/>                [1; 1]<br/>                [1; 1]<br/>                [1; 1]]<br/></code></pre></p><p><p></p></blockquote></p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>
