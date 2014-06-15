@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Array 2D | udooz F# Scribbles]]></title>
-  <link href="http://udooz.github.io//github/blog/categories/array-2d/atom.xml" rel="self"/>
-  <link href="http://udooz.github.io//github/"/>
-  <updated>2014-06-15T10:36:06+05:30</updated>
-  <id>http://udooz.github.io//github/</id>
+  <link href="http://udooz.github.io/fsharpscribbles//blog/categories/array-2d/atom.xml" rel="self"/>
+  <link href="http://udooz.github.io/fsharpscribbles//"/>
+  <updated>2014-06-15T19:32:53+05:30</updated>
+  <id>http://udooz.github.io/fsharpscribbles//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Create m x n array initialized with 1]]></title>
-    <link href="http://udooz.github.io//github/blog/2014/06/15/create-mxn-array-initialized-with-1/"/>
+    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/15/create-mxn-array-initialized-with-1/"/>
     <updated>2014-06-15T09:29:13+05:30</updated>
-    <id>http://udooz.github.io//github/blog/2014/06/15/create-mxn-array-initialized-with-1</id>
+    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/15/create-mxn-array-initialized-with-1</id>
     <content type="html"><![CDATA[<h2>Initialize Array2D with 1</h2>
 
 <p>In python numpy,</p>
