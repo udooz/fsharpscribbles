@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Machine Learning | udooz F# Scribbles]]></title>
+  <title><![CDATA[Category: Machine Learning | F# Scribbles]]></title>
   <link href="http://udooz.github.io/fsharpscribbles//blog/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://udooz.github.io/fsharpscribbles//"/>
-  <updated>2014-06-16T01:22:46+05:30</updated>
+  <updated>2014-06-16T10:57:29+05:30</updated>
   <id>http://udooz.github.io/fsharpscribbles//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
@@ -18,9 +18,7 @@
     <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list/"/>
     <updated>2014-06-16T00:39:03+05:30</updated>
     <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list</id>
-    <content type="html"><![CDATA[<h2>Keep input datasource as list of list</h2>
-
-<p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
+    <content type="html"><![CDATA[<p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
 For example,
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">d1</span> <span class="o">=</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">.;</span> <span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">3</span><span class="o">.;</span> <span class="mi">1</span><span class="o">.]];;</span>
@@ -29,9 +27,8 @@ will result
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>val d1 : float list list = [[1.0; 2.0]; [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>This can be easily be converted as Matrix.</h3>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>This can be easily be converted as Matrix.
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">matrix</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Matrix</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 results
@@ -48,9 +45,8 @@ results
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>To convert into Array2D by</h3>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>To convert into Array2D by
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">array2D</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Array2D</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 results
@@ -74,9 +70,7 @@ results
     <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/"/>
     <updated>2014-06-15T09:29:13+05:30</updated>
     <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1</id>
-    <content type="html"><![CDATA[<h2>Initialize Array2D with 1</h2>
-
-<p>In python numpy,</p>
+    <content type="html"><![CDATA[<p>In python numpy,</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
