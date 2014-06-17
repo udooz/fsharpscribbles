@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[F# Scribbles]]></title>
-  <link href="http://udooz.github.io/fsharpscribbles//atom.xml" rel="self"/>
-  <link href="http://udooz.github.io/fsharpscribbles//"/>
-  <updated>2014-06-16T20:11:35+05:30</updated>
-  <id>http://udooz.github.io/fsharpscribbles//</id>
+  <link href="http://udooz.github.io//atom.xml" rel="self"/>
+  <link href="http://udooz.github.io//"/>
+  <updated>2014-06-17T08:55:43+05:30</updated>
+  <id>http://udooz.github.io//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Numpy array.argsort() in F#]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/"/>
+    <link href="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/"/>
     <updated>2014-06-16T11:27:07+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-argsort-in-f-number</id>
+    <id>http://udooz.github.io//blog/2014/06/python-numpy-array-dot-argsort-in-f-number</id>
     <content type="html"><![CDATA[<p>In Python Numpy, the array.argsort returns the indices that would sort an array.</p>
 
 <p>For example,</p>
@@ -69,9 +69,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Numpy array.sum(axis = 1) in F#]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/"/>
+    <link href="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/"/>
     <updated>2014-06-16T11:20:53+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number</id>
+    <id>http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number</id>
     <content type="html"><![CDATA[<p>In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements.</p>
 
 <p>For example,</p>
@@ -121,9 +121,9 @@
   
   <entry>
     <title type="html"><![CDATA[Keep input data source as list of list]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list/"/>
+    <link href="http://udooz.github.io//blog/2014/06/keep-input-data-source-as-list-of-list/"/>
     <updated>2014-06-16T00:39:03+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list</id>
+    <id>http://udooz.github.io//blog/2014/06/keep-input-data-source-as-list-of-list</id>
     <content type="html"><![CDATA[<p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
 For example,</p>
 
@@ -174,9 +174,9 @@ For example,</p>
   
   <entry>
     <title type="html"><![CDATA[Create m x n array initialized with 1]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/"/>
+    <link href="http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1/"/>
     <updated>2014-06-15T09:29:13+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1</id>
+    <id>http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1</id>
     <content type="html"><![CDATA[<p>In python numpy,</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

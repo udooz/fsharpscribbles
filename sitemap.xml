@@ -1,47 +1,43 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>
-            http://udooz.github.io/fsharpscribbles//blog/2014/06/create-mxn-array-initialized-with-1/
-        </loc>
+        <loc>http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1/</loc>
+        <lastmod>2014-06-16T10:56:16+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://udooz.github.io//blog/2014/06/keep-input-data-source-as-list-of-list/</loc>
         <lastmod>2014-06-16T10:56:16+05:30</lastmod>
     </url>
     <url>
         <loc>
-            http://udooz.github.io/fsharpscribbles//blog/2014/06/keep-input-data-source-as-list-of-list/
-        </loc>
-        <lastmod>2014-06-16T10:56:16+05:30</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/
+            http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/
         </loc>
         <lastmod>2014-06-16T11:26:11+05:30</lastmod>
     </url>
     <url>
         <loc>
-            http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/
+            http://udooz.github.io//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/
         </loc>
         <lastmod>2014-06-16T11:31:16+05:30</lastmod>
     </url>
     <url>
-        <loc>http://udooz.github.io/fsharpscribbles//404.html</loc>
+        <loc>http://udooz.github.io//404.html</loc>
         <lastmod>2014-06-16T10:56:16+05:30</lastmod>
     </url>
     <url>
-        <loc>http://udooz.github.io/fsharpscribbles//blog/archives/</loc>
+        <loc>http://udooz.github.io//blog/archives/</loc>
         <lastmod>2014-06-16T11:31:16+05:30</lastmod>
     </url>
     <url>
-        <loc>http://udooz.github.io/fsharpscribbles//blog/</loc>
+        <loc>http://udooz.github.io//blog/</loc>
         <lastmod>2014-06-16T11:31:16+05:30</lastmod>
     </url>
     <url>
-        <loc>http://udooz.github.io/fsharpscribbles//</loc>
+        <loc>http://udooz.github.io//</loc>
         <lastmod>2014-06-16T11:31:16+05:30</lastmod>
     </url>
     <url>
-        <loc>http://udooz.github.io/fsharpscribbles//robots.txt</loc>
+        <loc>http://udooz.github.io//robots.txt</loc>
         <lastmod>2014-06-16T01:18:53+05:30</lastmod>
     </url>
 </urlset>

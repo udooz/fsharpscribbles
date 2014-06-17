@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: FSharp.PowerPack | F# Scribbles]]></title>
-  <link href="http://udooz.github.io/fsharpscribbles//blog/categories/fsharp-dot-powerpack/atom.xml" rel="self"/>
-  <link href="http://udooz.github.io/fsharpscribbles//"/>
-  <updated>2014-06-16T20:11:35+05:30</updated>
-  <id>http://udooz.github.io/fsharpscribbles//</id>
+  <link href="http://udooz.github.io//blog/categories/fsharp-dot-powerpack/atom.xml" rel="self"/>
+  <link href="http://udooz.github.io//"/>
+  <updated>2014-06-17T08:55:43+05:30</updated>
+  <id>http://udooz.github.io//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Numpy array.argsort() in F#]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/"/>
+    <link href="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-argsort-in-f-number/"/>
     <updated>2014-06-16T11:27:07+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-argsort-in-f-number</id>
+    <id>http://udooz.github.io//blog/2014/06/python-numpy-array-dot-argsort-in-f-number</id>
     <content type="html"><![CDATA[<p>In Python Numpy, the array.argsort returns the indices that would sort an array.</p>
 
 <p>For example,
@@ -58,9 +58,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Numpy array.sum(axis = 1) in F#]]></title>
-    <link href="http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/"/>
+    <link href="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/"/>
     <updated>2014-06-16T11:20:53+05:30</updated>
-    <id>http://udooz.github.io/fsharpscribbles//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number</id>
+    <id>http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number</id>
     <content type="html"><![CDATA[<p>In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements.</p>
 
 <p>For example,
