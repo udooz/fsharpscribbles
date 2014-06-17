@@ -4,7 +4,7 @@
   <title><![CDATA[F# Scribbles]]></title>
   <link href="http://udooz.github.io//atom.xml" rel="self"/>
   <link href="http://udooz.github.io//"/>
-  <updated>2014-06-17T12:55:51+05:30</updated>
+  <updated>2014-06-17T12:58:30+05:30</updated>
   <id>http://udooz.github.io//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Analyze Performance Counters using F# and Deedle library]]></title>
-    <link href="http://udooz.github.io//blog/2014/06/analyze-performance-counters-using-f-number-and-deedle-library/"/>
+    <link href="http://udooz.github.io//blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library/"/>
     <updated>2014-06-17T08:53:04+05:30</updated>
-    <id>http://udooz.github.io//blog/2014/06/analyze-performance-counters-using-f-number-and-deedle-library</id>
+    <id>http://udooz.github.io//blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library</id>
     <content type="html"><![CDATA[<p>Analysing Windows performance counters is an interesting job for that we use many tools importantly Microsoft Excel.  To share the trends and improvements with graphical charts, Ops people rely on many tools.  As a developers, we shouldn&rsquo;t :).</p>
 
 <p>Here, I use <a href="http://bluemountaincapital.github.io/Deedle/">Deedle &ndash; exploratory data library</a>, this is equivalent to Python&rsquo;s Pandas library.  Assume that one set of results are logged in a CSV file.</p>
