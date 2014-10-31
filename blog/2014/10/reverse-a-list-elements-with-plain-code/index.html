@@ -5,14 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python Numpy array.sum(axis = 1) in F# - F# Scribbles</title>
+  <title>Reverse a list elements with plain code - F# Scribbles</title>
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements. For example, 1
+  <meta name="description" content="How to reverse a list elements 1
 2
-k = array ([[1, 2], [4, 5]])
-k.sum( &hellip;">
+3
+4
+5
+6
+let reverse list = let rec rev rlist list = hmatch list with | [] -&gt; rlist | h :: t -&gt; rev (h :: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +24,7 @@ k.sum( &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/">
+  <link rel="canonical" href="http://udooz.github.io//blog/2014/10/reverse-a-list-elements-with-plain-code/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -70,7 +73,7 @@ k.sum( &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Python Numpy array.sum(axis = 1) in F#</h1>
+      <h1 class="entry-title">Reverse a list elements with plain code</h1>
     
     
       <p class="meta">
@@ -86,57 +89,40 @@ k.sum( &hellip;">
   
 
 
-<time datetime="2014-06-16T11:20:53+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
+<time datetime="2014-10-31T10:37:25+05:30" pubdate data-updated="true">Oct 31<span>st</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements.</p>
-
-<p>For example,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="n">array</span> <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
-</span><span class='line'><span class="n">k</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>array([3, 9])</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In F# we can do that with FSharp.PowerPack.</p>
-
-<p>Let us define a method to perform the above feature</p>
+<div class="entry-content"><p>How to reverse a list elements</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">sumAxis1</span> <span class="o">(</span><span class="n">m</span><span class="o">:</span><span class="n">matrix</span><span class="o">)</span> <span class="o">=</span>
-</span><span class='line'>    <span class="k">let</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="nc">NumRows</span>
-</span><span class='line'>    <span class="nn">Matrix</span><span class="p">.</span><span class="n">foldByRow</span> <span class="o">(</span><span class="k">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="nn">Vector</span><span class="p">.</span><span class="n">create</span> <span class="n">nrow</span> <span class="mi">0</span><span class="o">.)</span> <span class="n">m</span> <span class="c1">//fold by row</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">reverse</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>        <span class="k">let</span> <span class="k">rec</span> <span class="n">rev</span> <span class="n">rlist</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>            <span class="n">match</span> <span class="kt">list</span> <span class="k">with</span>
+</span><span class='line'>            <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">rlist</span>
+</span><span class='line'>            <span class="o">|</span> <span class="n">h</span> <span class="o">::</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">rev</span> <span class="o">(</span><span class="n">h</span> <span class="o">::</span> <span class="n">rlist</span><span class="o">)</span> <span class="n">t</span>
+</span><span class='line'>        <span class="n">rev</span> <span class="bp">[]</span> <span class="kt">list</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Let us apply the above function into a matrix</p>
+<p>The &ldquo;rev&rdquo; is the inner function to recursively get the head of given list and prepend to the result.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">[[</span><span class="mi">1</span><span class="o">.;</span><span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">4</span><span class="o">.;</span><span class="mi">5</span><span class="o">.]];;</span>
-</span><span class='line'><span class="n">sumAxis1</span> <span class="n">m</span><span class="o">;;</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">l</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span> <span class="mi">3</span><span class="o">;</span> <span class="mi">5</span><span class="o">];;</span>
+</span><span class='line'><span class="n">reverse</span> <span class="n">l</span><span class="o">;;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>val it : Vector&lt;float> = vector [|3.0; 9.0|]</span></code></pre></td></tr></table></div></figure>
-
+<p> results [5; 3; 1]</p>
 </div>
 
 
@@ -159,12 +145,12 @@ k.sum( &hellip;">
   
 
 
-<time datetime="2014-06-16T11:20:53+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
+<time datetime="2014-10-31T10:37:25+05:30" pubdate data-updated="true">Oct 31<span>st</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/fsharp-dot-powerpack/'>FSharp.PowerPack</a>, <a class='category' href='/blog/categories/machine-learning/'>Machine Learning</a>
+    <a class='category' href='/blog/categories/language/'>language</a>
   
 </span>
 
@@ -173,7 +159,7 @@ k.sum( &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/" data-via="udooz" data-counturl="http://udooz.github.io//blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io//blog/2014/10/reverse-a-list-elements-with-plain-code/" data-via="udooz" data-counturl="http://udooz.github.io//blog/2014/10/reverse-a-list-elements-with-plain-code/" >Tweet</a>
   
   
   
@@ -184,10 +170,8 @@ k.sum( &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/keep-input-data-source-as-list-of-list/" title="Previous Post: Keep input data source as list of list">&laquo; Keep input data source as list of list</a>
+        <a class="basic-alignment left" href="/blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library/" title="Previous Post: Analyze Azure Cloud Service Performance Counters using F# and Deedle library">&laquo; Analyze Azure Cloud Service Performance Counters using F# and Deedle library</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/python-numpy-array-dot-argsort-in-f-number/" title="Next Post: Python Numpy array.argsort() in F#">Python Numpy array.argsort() in F# &raquo;</a>
       
     </p>
   </footer>

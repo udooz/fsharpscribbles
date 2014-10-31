@@ -9,7 +9,13 @@
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="Analysing Windows performance counters is an interesting job for that we use many tools importantly Microsoft Excel. To share the trends and &hellip;">
+  <meta name="description" content="How to reverse a list elements 1
+2
+3
+4
+5
+6
+let reverse list = let rec rev rlist list = hmatch list with | [] -&gt; rlist | h :: t -&gt; rev (h :: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +70,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/reverse-a-list-elements-with-plain-code/">Reverse a list elements with plain code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-31T10:37:25+05:30" pubdate data-updated="true">Oct 31<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>How to reverse a list elements</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">reverse</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>        <span class="k">let</span> <span class="k">rec</span> <span class="n">rev</span> <span class="n">rlist</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>            <span class="n">hmatch</span> <span class="kt">list</span> <span class="k">with</span>
+</span><span class='line'>            <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">rlist</span>
+</span><span class='line'>            <span class="o">|</span> <span class="n">h</span> <span class="o">::</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">rev</span> <span class="o">(</span><span class="n">h</span> <span class="o">::</span> <span class="n">rlist</span><span class="o">)</span> <span class="n">t</span>
+</span><span class='line'>        <span class="n">rev</span> <span class="bp">[]</span> <span class="kt">list</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The &ldquo;rev&rdquo; is the inner function to recursively get the head of given list and prepend to the result.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">l</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span> <span class="mi">3</span><span class="o">;</span> <span class="mi">5</span><span class="o">];;</span>
+</span><span class='line'><span class="n">reverse</span> <span class="n">l</span><span class="o">;;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> results [5; 3; 1]</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -500,83 +568,9 @@ For example,</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/create-mxn-array-initialized-with-1/">Create m x n array initialized with 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-15T09:29:13+05:30" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In python numpy,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> array([[1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1]])</span></code></pre></td></tr></table></div></figure>
-
-
-<p>similarly in F#</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="nn">Array2D</span><span class="p">.</span><span class="n">init</span> <span class="mi">5</span> <span class="mi">2</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">j</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> val it : int [,] = [[1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]]</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -587,6 +581,10 @@ For example,</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/reverse-a-list-elements-with-plain-code/">Reverse a list elements with plain code</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library/">Analyze Azure Cloud Service Performance Counters using F# and Deedle library</a>
@@ -602,10 +600,6 @@ For example,</p>
     
       <li class="post">
         <a href="/blog/2014/06/keep-input-data-source-as-list-of-list/">Keep input data source as list of list</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/create-mxn-array-initialized-with-1/">Create m x n array initialized with 1</a>
       </li>
     
   </ul>

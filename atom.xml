@@ -4,14 +4,49 @@
   <title><![CDATA[F# Scribbles]]></title>
   <link href="http://udooz.github.io//atom.xml" rel="self"/>
   <link href="http://udooz.github.io//"/>
-  <updated>2014-06-17T13:00:06+05:30</updated>
+  <updated>2014-10-31T10:46:58+05:30</updated>
   <id>http://udooz.github.io//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
-    
+    <email><![CDATA[udooz@outlook.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reverse a list elements with plain code]]></title>
+    <link href="http://udooz.github.io//blog/2014/10/reverse-a-list-elements-with-plain-code/"/>
+    <updated>2014-10-31T10:37:25+05:30</updated>
+    <id>http://udooz.github.io//blog/2014/10/reverse-a-list-elements-with-plain-code</id>
+    <content type="html"><![CDATA[<p>How to reverse a list elements</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">reverse</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>        <span class="k">let</span> <span class="k">rec</span> <span class="n">rev</span> <span class="n">rlist</span> <span class="kt">list</span> <span class="o">=</span>
+</span><span class='line'>            <span class="n">hmatch</span> <span class="kt">list</span> <span class="k">with</span>
+</span><span class='line'>            <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">rlist</span>
+</span><span class='line'>            <span class="o">|</span> <span class="n">h</span> <span class="o">::</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">rev</span> <span class="o">(</span><span class="n">h</span> <span class="o">::</span> <span class="n">rlist</span><span class="o">)</span> <span class="n">t</span>
+</span><span class='line'>        <span class="n">rev</span> <span class="bp">[]</span> <span class="kt">list</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The &ldquo;rev&rdquo; is the inner function to recursively get the head of given list and prepend to the result.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">l</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span> <span class="mi">3</span><span class="o">;</span> <span class="mi">5</span><span class="o">];;</span>
+</span><span class='line'><span class="n">reverse</span> <span class="n">l</span><span class="o">;;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> results [5; 3; 1]</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Analyze Azure Cloud Service Performance Counters using F# and Deedle library]]></title>
