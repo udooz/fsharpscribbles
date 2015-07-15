@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Screen Warping | F# Scribbles]]></title>
+  <link href="http://udooz.github.io//blog/categories/screen-warping/atom.xml" rel="self"/>
+  <link href="http://udooz.github.io//"/>
+  <updated>2015-07-15T14:52:47+05:30</updated>
+  <id>http://udooz.github.io//</id>
+  <author>
+    <name><![CDATA[M Sheik Uduman Ali]]></name>
+    <email><![CDATA[udooz@outlook.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Generate plain item list from a catalog in a web page]]></title>
+    <link href="http://udooz.github.io//blog/2015/07/generate-plain-item-list-from-a-catalog-in-a-web-page/"/>
+    <updated>2015-07-15T14:17:17+05:30</updated>
+    <id>http://udooz.github.io//blog/2015/07/generate-plain-item-list-from-a-catalog-in-a-web-page</id>
+    <content type="html"><![CDATA[<p>As part of my IoT related experiments, reading Exploring Ardunio book for some insight.  In order to get the list of electronic parts for the projects, <a href="http://exploringarduino.com/parts">http://exploringarduino.com/parts</a> list out all required items.  Here the excercise to take the HTML of the catalog from the web site using Chrome and then used F# script to get the plain list.</p>
+
+<p>In the HTML, you can see the item title in the format of &ldquo;title={item name}&rdquo;</p>
+
+<p><div><script src='https://gist.github.com/306c8c80717b24e2fb2e.js'></script>
+<noscript><pre><code>&lt;div class=&quot;page-list page-list-ext &quot;&gt;
+&lt;div class=&quot;page-list-ext-item&quot;&gt;&lt;div class=&quot;page-list-ext-image&quot;&gt;&lt;a href=&quot;http://exploringarduino.com/parts/p1uf-cap/?iframe=true&quot; rel=&quot;prettyPhoto&quot; &quot;=&quot;&quot; title=&quot;.1uF Electrolytic Capacitor&quot;&gt;&lt;img src=&quot;//exploringarduino.com/wp-content/uploads/2013/06/1uF-capacitor.jpg&quot; width=&quot;150&quot; alt=&quot;.1uF Electrolytic Capacitor&quot;&gt;&lt;/a&gt;&lt;/div&gt; &lt;h3 class=&quot;page-list-ext-title&quot;&gt;&lt;a href=&quot;http://exploringarduino.com/parts/p1uf-cap/?iframe=true&quot; rel=&quot;prettyPhoto&quot; &quot;=&quot;&quot; title=&quot;.1uF Electrolytic Capacitor&quot;&gt;.1uF Electrolytic Capacitor&lt;/a&gt;&lt;/h3&gt;&lt;/div&gt;</code></pre></noscript></div>
+</p>
+
+<p>I define a regex to parse that specific item on every line.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">open</span> <span class="nc">System</span>
+</span><span class='line'><span class="k">open</span> <span class="nn">System</span><span class="p">.</span><span class="nc">IO</span>
+</span><span class='line'><span class="k">open</span> <span class="nn">System</span><span class="p">.</span><span class="nn">Text</span><span class="p">.</span><span class="nc">RegularExpressions</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">let</span> <span class="n">parseLine</span> <span class="o">(</span><span class="n">line</span><span class="o">:</span> <span class="kt">string</span><span class="o">)</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">let</span> <span class="n">r</span> <span class="o">=</span> <span class="nn">Regex</span><span class="p">.</span><span class="nc">Match</span> <span class="o">(</span><span class="n">line</span><span class="o">,</span> <span class="s2">&quot;&quot;&quot;.*(title=</span><span class="se">\&quot;</span><span class="s2">(.*)</span><span class="se">\&quot;</span><span class="s2">).*&quot;&quot;&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="nn">Groups</span><span class="p">.</span><span class="err">[2]</span><span class="p">.</span><span class="nc">Value</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">let</span> <span class="n">parse</span> <span class="n">text</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">let</span> <span class="n">foldit</span> <span class="n">seq</span> <span class="o">=</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">fold</span> <span class="o">(</span><span class="k">fun</span> <span class="n">acc</span> <span class="n">l</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">acc</span> <span class="o">+</span> <span class="nn">Environment</span><span class="p">.</span><span class="nc">NewLine</span> <span class="o">+</span> <span class="n">parseLine</span><span class="o">(</span><span class="n">l</span><span class="o">))</span> <span class="s2">&quot;&quot;</span> <span class="n">seq</span>
+</span><span class='line'><span class="n">text</span> <span class="o">|&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">foldit</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">let</span> <span class="n">writefile</span> <span class="n">content</span> <span class="o">=</span> <span class="nn">File</span><span class="p">.</span><span class="nc">WriteAllText</span><span class="o">(&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="nc">OUTPUT</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="nc">FILE</span><span class="o">,</span> <span class="n">content</span><span class="o">)</span>
+</span><span class='line'><span class="nn">File</span><span class="p">.</span><span class="nc">ReadLines</span><span class="o">(&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="nc">INPUT_FILE</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;|&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">parse</span>
+</span><span class='line'><span class="o">|&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">writefile</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here, the outcome
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.1uF Electrolytic Capacitor
+</span><span class='line'>100 ohm Resistor
+</span><span class='line'>10kohm Potentiometer
+</span><span class='line'>10kohm Resistor
+</span><span class='line'>10uF Electrolytic Capacitor
+</span><span class='line'>150ohm Resistor
+</span><span class='line'>16x2 LCD
+</span><span class='line'>1kohm Resistor
+</span><span class='line'>&hellip;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

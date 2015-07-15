@@ -9,18 +9,10 @@
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="In python numpy, 1
-tile(1, (5,2)) will give 1
+  <meta name="description" content="In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements. For example, 1
 2
-3
-4
-5
-> array([[1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1]]) similarly in F# 1
-Array2D.init 5 2 ( &hellip;">
+k = array ([[1, 2], [4, 5]])
+k.sum( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +67,165 @@ Array2D.init 5 2 ( &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/">Python Numpy array.sum(axis = 1) in F#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-16T11:20:53+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Python Numpy, the array.sum enables to specify axis over which the sum is taken for elements.</p>
+
+<p>For example,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="n">array</span> <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+</span><span class='line'><span class="n">k</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will give</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>array([3, 9])</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In F# we can do that with FSharp.PowerPack.</p>
+
+<p>Let us define a method to perform the above feature</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">sumAxis1</span> <span class="o">(</span><span class="n">m</span><span class="o">:</span><span class="n">matrix</span><span class="o">)</span> <span class="o">=</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="nc">NumRows</span>
+</span><span class='line'>    <span class="nn">Matrix</span><span class="p">.</span><span class="n">foldByRow</span> <span class="o">(</span><span class="k">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="nn">Vector</span><span class="p">.</span><span class="n">create</span> <span class="n">nrow</span> <span class="mi">0</span><span class="o">.)</span> <span class="n">m</span> <span class="c1">//fold by row</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let us apply the above function into a matrix</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">[[</span><span class="mi">1</span><span class="o">.;</span><span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">4</span><span class="o">.;</span><span class="mi">5</span><span class="o">.]];;</span>
+</span><span class='line'><span class="n">sumAxis1</span> <span class="n">m</span><span class="o">;;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will give</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : Vector&lt;float> = vector [|3.0; 9.0|]</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/keep-input-data-source-as-list-of-list/">Keep input data source as list of list</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-16T00:39:03+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It is always better to define input data source in list of list for maths calculation. It is easy to convert them into matrix and array 2d.
+For example,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">d1</span> <span class="o">=</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">.;</span> <span class="mi">2</span><span class="o">.];</span> <span class="o">[</span><span class="mi">3</span><span class="o">.;</span> <span class="mi">1</span><span class="o">.]];;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will result</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val d1 : float list list = [[1.0; 2.0]; [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This can be easily be converted as Matrix.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">matrix</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Matrix</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : matrix = matrix [[1.0; 2.0]
+</span><span class='line'>                          [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To convert into Array2D by</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">array2D</span> <span class="n">d1</span><span class="o">;;</span> <span class="c1">// cast it to Array2D</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>val it : float [,] = [[1.0; 2.0]
+</span><span class='line'>                      [3.0; 1.0]]</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -167,6 +318,14 @@ Array2D.init 5 2 ( &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/generate-plain-item-list-from-a-catalog-in-a-web-page/">Generate plain item list from a catalog in a web page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/performance-of-large-list-on-reverse-function-using-f-number-and-scala/">Performance of large list on reverse function using F# and Scala</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/reverse-a-list-elements-with-plain-code/">Reverse a list elements with plain code</a>
       </li>
     
@@ -176,14 +335,6 @@ Array2D.init 5 2 ( &hellip;">
     
       <li class="post">
         <a href="/blog/2014/06/python-numpy-array-dot-argsort-in-f-number/">Python Numpy array.argsort() in F#</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/python-numpy-array-dot-sum-axis-equals-1-in-f-number/">Python Numpy array.sum(axis = 1) in F#</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/keep-input-data-source-as-list-of-list/">Keep input data source as list of list</a>
       </li>
     
   </ul>
@@ -199,7 +350,7 @@ Array2D.init 5 2 ( &hellip;">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - M Sheik Uduman Ali -
+  Copyright &copy; 2015 - M Sheik Uduman Ali -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
