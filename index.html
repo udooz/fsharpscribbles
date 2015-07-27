@@ -9,7 +9,7 @@
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="As part of my IoT related experiments, reading Exploring Ardunio book for some insight. In order to get the list of electronic parts for the projects &hellip;">
+  <meta name="description" content="Gracefully propogate the result from a callee function to caller is a good practise than using exceptions or null values. Exception raising and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,190 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/scalas-either-sum-type-equivalent/">Scala&#8217;s Either sum type equivalent</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-27T17:07:18+05:30" pubdate data-updated="true">Jul 27<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gracefully propogate the result from a callee function to caller is a good practise than using exceptions or null values.  Exception raising and handling are mostly not under control due to its side effect nature.  Also they come up with some cost in platform like .NET and Java.</p>
+
+<p>I ususally enforce my team to use Result<T> as method return type in imperative/OO languages like C#.  It has a property IsValid so that callar can ensure whether the invocation is successful.  Based on this, caller will take either actual Value or Error properties appropriately.  This is one of the practise in functional reactive programming.</p>
+
+<p>Functional languages address this with in-build pattern like F#&rsquo;s Option, and Scala&rsquo;s Some/None/Option.  The weakness of these approaches is not providing failure case details to the caller.  Scala provides a data type called <a href="http://www.scala-lang.org/api/2.9.3/scala/Either.html">Either</a>.  You can set either an actual value as Right or error details as Left.  Alvin Alexander has written an interesting article about this  (<a href="http://alvinalexander.com/scala/scala-either-left-right-example-option-some-none-null">http://alvinalexander.com/scala/scala-either-left-right-example-option-some-none-null</a>).</p>
+
+<p>Similar to Either, .NET 4.0 introduces <a href="https://msdn.microsoft.com/en-us/library/dd449174(v=vs.110">TaskCompletionSource</a>.aspx).  Scala 2.x introduces a syntactic sugar of Either as Try&hellip;Success&hellip;Failure](<a href="http://www.scala-lang.org/files/archive/nightly/docs/library/index.html#scala.util.Try">http://www.scala-lang.org/files/archive/nightly/docs/library/index.html#scala.util.Try</a>).  This post shows the syntactic sugar for TaskCompletionSource and also how to define Either idiom in F#.</p>
+
+<h3>Either Equivalent</h3>
+
+<p>Let us define Either equivalent in F# with the help of discriminated union.  I take the Alvin&rsquo;s divide X by Y example here.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">type</span> <span class="nc">Either</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">L</span><span class="o">,</span> <span class="k">&#39;</span><span class="nc">R</span><span class="o">&gt;</span> <span class="o">=</span>
+</span><span class='line'>    <span class="o">|</span> <span class="nc">Left</span> <span class="k">of</span> <span class="k">&#39;</span><span class="nc">L</span>
+</span><span class='line'>    <span class="o">|</span> <span class="nc">Right</span> <span class="k">of</span> <span class="k">&#39;</span><span class="nc">R</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let us use this Either in the divide function as</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">divide</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="nc">Left</span><span class="o">(</span><span class="s2">&quot;Divide by zero&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">else</span> <span class="nc">Right</span><span class="o">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">y</span> <span class="o">)</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">let</span> <span class="n">prnEither</span> <span class="o">(</span><span class="n">v</span><span class="o">:</span> <span class="nc">Either</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">,</span> <span class="kt">int</span><span class="o">&gt;)</span> <span class="o">=</span>
+</span><span class='line'>    <span class="k">match</span> <span class="n">v</span> <span class="k">with</span>
+</span><span class='line'>    <span class="o">|</span> <span class="nc">Left</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">printfn</span> <span class="s2">&quot;Error: %s&quot;</span> <span class="n">s</span>
+</span><span class='line'>    <span class="o">|</span> <span class="nc">Right</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">printfn</span> <span class="s2">&quot;Result: %d&quot;</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The prnEither is just a helper function to print the outcome to console.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">prnEither</span> <span class="o">(</span><span class="n">divide</span> <span class="mi">10</span> <span class="mi">0</span><span class="o">)</span> <span class="c1">// prints &quot;Error: Divide by zero&quot;</span>
+</span><span class='line'><span class="n">prnEither</span> <span class="o">(</span><span class="n">divide</span> <span class="mi">10</span> <span class="mi">10</span><span class="o">)</span> <span class="c1">// prints &quot;Result: 1&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Syntactic sugar for TaskCompletionSource</h3>
+
+<p>TaskCompletionSource provides SetException to set appropriate excpetion details and SetResult to set result if success.  The below example demonstrate the usage of this in &lsquo;sync&rsquo; way.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">exception</span> <span class="nc">AmountError</span> <span class="k">of</span> <span class="kt">string</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">let</span> <span class="n">debit</span><span class="o">(</span><span class="n">a</span><span class="o">:</span> <span class="nc">Account</span><span class="o">,</span> <span class="n">amount</span><span class="o">:</span> <span class="kt">decimal</span><span class="o">)</span> <span class="o">=</span>
+</span><span class='line'>        <span class="c1">// .Net way of promising and feature</span>
+</span><span class='line'>      <span class="c1">// don&#39;t worry about Account type definition here</span>
+</span><span class='line'>        <span class="k">let</span> <span class="n">tcs</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TaskCompletionSource</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span><span class="bp">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">balance</span> <span class="o">&lt;</span> <span class="n">amount</span> <span class="k">then</span>
+</span><span class='line'>            <span class="n">tcs</span><span class="o">.</span><span class="nc">SetException</span><span class="o">(</span><span class="nc">AmountError</span> <span class="s2">&quot;Insufficient balance in account&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>            <span class="n">tcs</span><span class="o">.</span><span class="nc">SetResult</span><span class="o">({</span><span class="n">a</span> <span class="k">with</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span><span class="o">})</span>
+</span><span class='line'>      <span class="c1">// returns Task</span>
+</span><span class='line'>      <span class="n">tcs</span><span class="o">.</span><span class="nc">Task</span>
+</span><span class='line'>      
+</span><span class='line'><span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span> <span class="o">=</span> <span class="s2">&quot;AnAccountNumber&quot;</span><span class="o">;</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sheik&quot;</span><span class="o">;</span> <span class="n">balance</span> <span class="o">=</span> <span class="mi">100</span><span class="n">M</span><span class="o">}</span>
+</span><span class='line'><span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">debit</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="mi">1000</span><span class="n">M</span><span class="o">)</span>
+</span><span class='line'><span class="n">b</span><span class="o">.</span><span class="nc">IsFaulted</span> <span class="c1">// prints true</span>
+</span><span class='line'><span class="n">b</span><span class="o">.</span><span class="nc">Exception</span> <span class="c1">// you may get FSI_0002+AmountError: Exception of type &#39;FSI_0002+AmountError&#39; was thrown.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A syntactic sugar would be</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'>    <span class="k">type</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nc">TaskCompletionSource</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">let</span> <span class="nc">Success</span> <span class="o">(</span><span class="n">t</span><span class="o">:</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;)</span>  <span class="o">(</span><span class="n">v</span><span class="o">:</span> <span class="k">&#39;</span><span class="nc">T</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="nc">SetResult</span><span class="o">(</span><span class="n">v</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="nc">SuccessAsync</span> <span class="o">(</span><span class="n">t</span><span class="o">:</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;)</span>  <span class="o">(</span><span class="n">v</span><span class="o">:</span> <span class="k">&#39;</span><span class="nc">T</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="nc">SetResult</span><span class="o">(</span><span class="n">v</span><span class="o">)</span>
+</span><span class='line'>            <span class="nn">Async</span><span class="p">.</span><span class="nc">AwaitTask</span> <span class="n">t</span><span class="o">.</span><span class="nc">Task</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">let</span> <span class="nc">Failure</span> <span class="o">(</span><span class="n">t</span><span class="o">:</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;)</span> <span class="o">(</span><span class="n">e</span><span class="o">:</span> <span class="nc">Exception</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="nc">SetException</span><span class="o">(</span><span class="n">e</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="nc">FailureAsync</span> <span class="o">(</span><span class="n">t</span><span class="o">:</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="k">&#39;</span><span class="nc">T</span><span class="o">&gt;)</span> <span class="o">(</span><span class="n">e</span><span class="o">:</span> <span class="nc">Exception</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="nc">SetException</span><span class="o">(</span><span class="n">e</span><span class="o">)</span>
+</span><span class='line'>            <span class="nn">Async</span><span class="p">.</span><span class="nc">AwaitTask</span> <span class="n">t</span><span class="o">.</span><span class="nc">Task</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the calling side would be</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">debit</span><span class="o">(</span><span class="n">a</span><span class="o">:</span> <span class="nc">Account</span><span class="o">,</span> <span class="n">amount</span><span class="o">:</span> <span class="kt">decimal</span><span class="o">)</span> <span class="o">=</span>
+</span><span class='line'>        <span class="c1">// .Net way of promising and feature</span>
+</span><span class='line'>        <span class="k">let</span> <span class="n">tri</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Try</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span><span class="bp">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">balance</span> <span class="o">&lt;</span> <span class="n">amount</span> <span class="k">then</span>
+</span><span class='line'>            <span class="nc">Failure</span> <span class="n">tri</span> <span class="o">(</span><span class="nc">AmountError</span> <span class="s2">&quot;Insufficient balance in account&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>            <span class="nc">Success</span> <span class="n">tri</span> <span class="o">({</span><span class="n">a</span> <span class="k">with</span> <span class="n">balance</span> <span class="o">=</span> <span class="o">{</span><span class="n">amount</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">amount</span><span class="o">}})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -490,87 +674,6 @@ val it : int list =
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/python-numpy-array-dot-argsort-in-f-number/">Python Numpy array.argsort() in F#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-16T11:27:07+05:30" pubdate data-updated="true">Jun 16<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Python Numpy, the array.argsort returns the indices that would sort an array.</p>
-
-<p>For example,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="n">array</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">k</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>array([0, 4, 2, 1, 3])</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In F# we can do that as depicted below.</p>
-
-<p>Let there is an array</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">k</span> <span class="o">=</span> <span class="o">[|</span> <span class="mi">1</span><span class="o">;</span> <span class="mi">5</span><span class="o">;</span> <span class="mi">3</span><span class="o">;</span> <span class="mi">7</span><span class="o">;</span> <span class="mi">2</span> <span class="o">|]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To get argsort as like above</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">k</span>
-</span><span class='line'><span class="o">|&gt;</span> <span class="nn">Array</span><span class="p">.</span><span class="n">mapi</span> <span class="o">(</span><span class="k">fun</span> <span class="n">index</span> <span class="n">value</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">index</span><span class="o">))</span>
-</span><span class='line'><span class="o">|&gt;</span> <span class="nn">Array</span><span class="p">.</span><span class="n">sort</span>
-</span><span class='line'><span class="o">|&gt;</span> <span class="nn">Array</span><span class="p">.</span><span class="n">map</span> <span class="o">(</span><span class="k">fun</span> <span class="n">v</span> <span class="o">-&gt;</span> <span class="n">snd</span> <span class="n">v</span><span class="o">);;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Array.mapi helps to return a tuple with first element as array value and second element as index position. This array has been sorted by the first element. Finally Array.map helps to return second element of the tuple. The result is</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>val it : int [] = [|0; 4; 2; 1; 3|]</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -586,6 +689,10 @@ val it : int list =
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/scalas-either-sum-type-equivalent/">Scala&#8217;s Either sum type equivalent</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/generate-plain-item-list-from-a-catalog-in-a-web-page/">Generate plain item list from a catalog in a web page</a>
       </li>
     
@@ -599,10 +706,6 @@ val it : int list =
     
       <li class="post">
         <a href="/blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library/">Analyze Azure Cloud Service Performance Counters using F# and Deedle library</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/python-numpy-array-dot-argsort-in-f-number/">Python Numpy array.argsort() in F#</a>
       </li>
     
   </ul>
