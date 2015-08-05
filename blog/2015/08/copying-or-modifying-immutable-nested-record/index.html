@@ -5,22 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Create m x n array initialized with 1 - F# Scribbles</title>
+  <title>Copying or modifying immutable nested record - F# Scribbles</title>
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="In python numpy, 1
-tile(1, (5,2)) will give 1
+  <meta name="description" content="This is just a simple code snippet to show case how to copy or modify a immutable nested record type. Let us define a nested type 1
 2
 3
 4
-5
-> array([[1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1],
-> [1, 1]]) similarly in F# 1
-Array2D.init 5 2 ( &hellip;">
+type &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,7 +22,7 @@ Array2D.init 5 2 ( &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1/">
+  <link rel="canonical" href="http://udooz.github.io//blog/2015/08/copying-or-modifying-immutable-nested-record/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -78,7 +71,7 @@ Array2D.init 5 2 ( &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Create m x n array initialized with 1</h1>
+      <h1 class="entry-title">Copying or modifying immutable nested record</h1>
     
     
       <p class="meta">
@@ -94,53 +87,54 @@ Array2D.init 5 2 ( &hellip;">
   
 
 
-<time datetime="2014-06-15T09:29:13+05:30" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
+<time datetime="2015-08-05T23:50:52+05:30" pubdate data-updated="true">Aug 5<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>In python numpy,</p>
+<div class="entry-content"><p>This is just a simple code snippet to show case how to copy or modify a immutable nested record type.</p>
+
+<p>Let us define a nested type</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">type</span> <span class="nc">Address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span><span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="n">street</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">city</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">zip</span><span class="o">:</span> <span class="kt">string</span><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">type</span> <span class="nc">Profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">address</span><span class="o">:</span> <span class="nc">Address</span><span class="o">}</span>
+</span><span class='line'>                 <span class="k">member</span> <span class="n">this</span><span class="o">.</span><span class="n">tos</span><span class="bp">()</span> <span class="o">=</span> <span class="n">sprintf</span> <span class="s2">&quot;%s. %d - %s, %s %s&quot;</span> <span class="n">this</span><span class="o">.</span><span class="n">name</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">no</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">street</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">city</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">zip</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will give</p>
+<p>The Profile contains Address type.  Let us create an instance.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sheik&quot;</span><span class="o">;</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Road&quot;</span><span class="o">;</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Chennai&quot;</span><span class="o">;</span> <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;600001&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to change the street name alone for profile</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">mprofile</span> <span class="o">=</span> <span class="o">{</span><span class="n">profile</span> <span class="k">with</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">i1</span><span class="o">.</span><span class="n">address</span> <span class="k">with</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Nungambakkam High Road&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result will be</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> array([[1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1],
-</span><span class='line'>>    [1, 1]])</span></code></pre></td></tr></table></div></figure>
-
-
-<p>similarly in F#</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="nn">Array2D</span><span class="p">.</span><span class="n">init</span> <span class="mi">5</span> <span class="mi">2</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">j</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will give</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>> val it : int [,] = [[1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]
-</span><span class='line'>>                     [1; 1]]</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>> profile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Road, Chennai 600001"
+</span><span class='line'>
+</span><span class='line'>> mprofile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Nungambakkam High Road, Chennai 600001"</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -164,12 +158,12 @@ Array2D.init 5 2 ( &hellip;">
   
 
 
-<time datetime="2014-06-15T09:29:13+05:30" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
+<time datetime="2015-08-05T23:50:52+05:30" pubdate data-updated="true">Aug 5<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/array-2d/'>Array 2D</a>, <a class='category' href='/blog/categories/machine-learning/'>Machine Learning</a>
+    <a class='category' href='/blog/categories/copy/'>copy</a>, <a class='category' href='/blog/categories/immutability/'>immutability</a>, <a class='category' href='/blog/categories/modify/'>modify</a>, <a class='category' href='/blog/categories/nested-record-type/'>nested record type</a>
   
 </span>
 
@@ -178,7 +172,7 @@ Array2D.init 5 2 ( &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1/" data-via="udooz" data-counturl="http://udooz.github.io//blog/2014/06/create-mxn-array-initialized-with-1/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://udooz.github.io//blog/2015/08/copying-or-modifying-immutable-nested-record/" data-via="udooz" data-counturl="http://udooz.github.io//blog/2015/08/copying-or-modifying-immutable-nested-record/" >Tweet</a>
   
   
   
@@ -189,8 +183,8 @@ Array2D.init 5 2 ( &hellip;">
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2015/07/scalas-either-sum-type-equivalent/" title="Previous Post: Scala's Either sum type equivalent">&laquo; Scala's Either sum type equivalent</a>
       
-        <a class="basic-alignment right" href="/blog/2014/06/keep-input-data-source-as-list-of-list/" title="Next Post: Keep input data source as list of list">Keep input data source as list of list &raquo;</a>
       
     </p>
   </footer>

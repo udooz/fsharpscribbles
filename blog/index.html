@@ -9,7 +9,11 @@
   <meta name="author" content="M Sheik Uduman Ali">
 
   
-  <meta name="description" content="Gracefully propogate the result from a callee function to caller is a good practise than using exceptions or null values. Exception raising and &hellip;">
+  <meta name="description" content="This is just a simple code snippet to show case how to copy or modify a immutable nested record type. Let us define a nested type 1
+2
+3
+4
+type &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +67,81 @@
   <div id="main">
     <div id="content">
       
+
+
+    <article class="post">
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/copying-or-modifying-immutable-nested-record/">Copying or modifying immutable nested record</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-05T23:50:52+05:30" pubdate data-updated="true">Aug 5<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is just a simple code snippet to show case how to copy or modify a immutable nested record type.</p>
+
+<p>Let us define a nested type</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">type</span> <span class="nc">Address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span><span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="n">street</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">city</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">zip</span><span class="o">:</span> <span class="kt">string</span><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">type</span> <span class="nc">Profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">address</span><span class="o">:</span> <span class="nc">Address</span><span class="o">}</span>
+</span><span class='line'>                 <span class="k">member</span> <span class="n">this</span><span class="o">.</span><span class="n">tos</span><span class="bp">()</span> <span class="o">=</span> <span class="n">sprintf</span> <span class="s2">&quot;%s. %d - %s, %s %s&quot;</span> <span class="n">this</span><span class="o">.</span><span class="n">name</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">no</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">street</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">city</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">zip</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Profile contains Address type.  Let us create an instance.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sheik&quot;</span><span class="o">;</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Road&quot;</span><span class="o">;</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Chennai&quot;</span><span class="o">;</span> <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;600001&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to change the street name alone for profile</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">mprofile</span> <span class="o">=</span> <span class="o">{</span><span class="n">profile</span> <span class="k">with</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">i1</span><span class="o">.</span><span class="n">address</span> <span class="k">with</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Nungambakkam High Road&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result will be</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>> profile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Road, Chennai 600001"
+</span><span class='line'>
+</span><span class='line'>> mprofile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Nungambakkam High Road, Chennai 600001"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+</article>
 
 
     <article class="post">
@@ -464,199 +543,6 @@ val it : int list =
 
 
 <p> results [5; 3; 1]</p>
-</div>
-  
-  
-
-</article>
-
-
-    <article class="post">
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/analyze-azure-cloudapps-performance-counters-using-f-number-and-deedle-library/">Analyze Azure Cloud Service Performance Counters using F# and Deedle library</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-17T08:53:04+05:30" pubdate data-updated="true">Jun 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Analysing Windows performance counters is an interesting job for that we use many tools importantly Microsoft Excel.  To share the trends and improvements with graphical charts, Ops people rely on many tools.  As a developers, we shouldn&rsquo;t :).</p>
-
-<p>Here, I use <a href="http://bluemountaincapital.github.io/Deedle/">Deedle &ndash; exploratory data library</a>, this is equivalent to Python&rsquo;s Pandas library.  Assume that one set of results are logged in a CSV file.</p>
-
-<blockquote><p>Usually Microsoft Azure cloud service applications logs to table storage that can be exported to CSV files.</p></blockquote>
-
-<p><strong>Import Deedle library</strong></p>
-
-<p>Deedle can be downloaded as Nuget package.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="o">#</span><span class="nc">I</span> <span class="s2">&quot;DEEDLE-LIB-PATH</span><span class="err">\</span><span class="s2">Deedle.1.0.0&quot;</span><span class="o">;;</span>
-</span><span class='line'><span class="o">#</span><span class="n">load</span> <span class="s2">&quot;Deedle.fsx&quot;</span><span class="o">;;</span>
-</span><span class='line'><span class="k">open</span> <span class="nc">System</span><span class="o">;;</span>
-</span><span class='line'><span class="k">open</span> <span class="nc">Deedle</span><span class="o">;;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Import data and Analyze</strong></p>
-
-<p>Frame is a tabular based data structure.  Let us import the CSV.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'>
-</span><span class='line'><span class="k">let</span> <span class="n">perfCounters</span> <span class="o">=</span> <span class="nn">Frame</span><span class="p">.</span><span class="nc">ReadCsv</span><span class="o">(@</span><span class="s2">&quot;..</span><span class="err">\</span><span class="s2">WADPerformanceCountersTable.csv&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will return</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Binding session to '..\Deedle.1.0.0\../FSharp.Data.2.0.8/lib/net40/FSharp.Data.dll'...
-</span><span class='line'>
-</span><span class='line'>val perfCounters : Frame&lt;int,string> =
-</span><span class='line'>  
-</span><span class='line'>       PartitionKey RowKey                                                                                                                                                   Timestamp        EventTickCount:int64 DeploymentId                     Role                       RoleInstance                    CounterName                                       CounterValue 
-</span><span class='line'>0   -> PKVALUE    ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME \Web Service(_Total)\Bytes Total/Sec              55.204232    
-</span><span class='line'>1   -> PKVALUE    ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME \ASP.NET Applications(__Total__)\Requests/Sec     0.011111     
-</span><span class='line'>2   -> PKVALUE    ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME \ASP.NET Applications(__Total__)\Errors Total/Sec 0            
-</span><span class='line'>3   -> PKVALUE    ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME \Memory\Available MBytes                          384
-</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Let us group the result by counter name</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'>
-</span><span class='line'><span class="k">let</span> <span class="n">groupedPerf</span> <span class="o">=</span> <span class="n">perfCounters</span><span class="o">.</span><span class="nc">GroupRowsBy</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;(</span><span class="s2">&quot;CounterName&quot;</span><span class="o">);;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will results</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>val groupedPerf : Frame&lt;(string * int),string> =
-</span><span class='line'>  
-</span><span class='line'>                                            PartitionKey RowKey                                                                                                                                                   Timestamp        EventTickCount:int64 DeploymentId                     Role                       RoleInstance                    CounterName                          CounterValue 
-</span><span class='line'>\Web Service(_Total)\Bytes Total/Sec 0   -> PKVALUE ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME \Web Service(_Total)\Bytes Total/Sec 55.204232    
-</span><span class='line'>\Web Service(_Total)\Bytes Total/Sec 7   -> PKVALUE ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME  \Web Service(_Total)\Bytes Total/Sec 799.596468   
-</span><span class='line'>\Web Service(_Total)\Bytes Total/Sec 14  -> PKVALUE ROWKEYVALUE 31-01-2014 06:39 6.35267E+17          84011bf63b79412a86b0087cab91bdfe ROLE_NAME ROLE_INSTANCE_NAME  \Web Service(_Total)\Bytes Total/Sec 33.555829</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can do whatever the analysis you want.  For example, I want to calculate average of &ldquo;Available MBytes&rdquo;.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">groupedPerf</span><span class="o">.</span><span class="nn">Rows</span><span class="p">.</span><span class="err">[</span><span class="nc">Lookup1Of2</span> <span class="o">@</span><span class="s2">&quot;</span><span class="err">\</span><span class="s2">Memory</span><span class="err">\</span><span class="s2">Available MBytes&quot;</span><span class="o">]</span> <span class="c1">//Lookup1Of2 is F# 3.0 compatiility</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>this results</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">val</span> <span class="n">it</span> <span class="o">:</span> <span class="nc">Frame</span><span class="o">&lt;(</span><span class="kt">string</span> <span class="o">*</span> <span class="kt">int</span><span class="o">),</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span>
-</span><span class='line'>
-</span><span class='line'>                                <span class="nc">PartitionKey</span> <span class="nc">RowKey</span>                                                                                                                                                   <span class="nc">Timestamp</span>        <span class="nc">EventTickCount</span><span class="o">:</span><span class="kt">int64</span> <span class="nc">DeploymentId</span>                     <span class="nc">Role</span>                       <span class="nc">RoleInstance</span>                    <span class="nc">CounterName</span>              <span class="nc">CounterValue</span>
-</span><span class='line'><span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">3</span>   <span class="o">-&gt;</span> <span class="nc">PKVALUE</span> <span class="nc">ROWKEYVALUE</span> <span class="mi">31</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="o">:</span><span class="mi">39</span> <span class="mi">6</span><span class="o">.</span><span class="mi">35267</span><span class="n">E</span><span class="o">+</span><span class="mi">17</span>          <span class="mi">84011</span><span class="n">bf63b79412a86b0087cab91bdfe</span> <span class="nc">ROLE_NAME</span> <span class="nc">ROLE_INSTANCE_NAME</span> <span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">384</span>
-</span><span class='line'><span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">10</span>  <span class="o">-&gt;</span> <span class="nc">PKVALUE</span> <span class="nc">ROWKEYVALUE</span> <span class="mi">31</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="o">:</span><span class="mi">39</span> <span class="mi">6</span><span class="o">.</span><span class="mi">35267</span><span class="n">E</span><span class="o">+</span><span class="mi">17</span>          <span class="mi">84011</span><span class="n">bf63b79412a86b0087cab91bdfe</span> <span class="nc">ROLE_NAME</span> <span class="nc">ROLE_INSTANCE_NAME</span> <span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">390</span>
-</span><span class='line'><span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">17</span>  <span class="o">-&gt;</span> <span class="nc">PKVALUE</span> <span class="nc">ROWKEYVALUE</span> <span class="mi">31</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="o">:</span><span class="mi">39</span> <span class="mi">6</span><span class="o">.</span><span class="mi">35267</span><span class="n">E</span><span class="o">+</span><span class="mi">17</span>          <span class="mi">84011</span><span class="n">bf63b79412a86b0087cab91bdfe</span> <span class="nc">ROLE_NAME</span> <span class="nc">ROLE_INSTANCE_NAME</span> <span class="err">\</span><span class="nc">Memory</span><span class="err">\</span><span class="nc">Available</span> <span class="nc">MBytes</span> <span class="mi">390</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The Stats module in Deedle provides statistical functions operate on series.  For example,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">groupedPerf</span><span class="o">.</span><span class="nn">Rows</span><span class="p">.</span><span class="err">[</span><span class="nc">Lookup1Of2</span> <span class="o">@</span><span class="s2">&quot;</span><span class="err">\</span><span class="s2">Memory</span><span class="err">\</span><span class="s2">Available MBytes&quot;</span><span class="o">]</span> <span class="o">|&gt;</span> <span class="nn">Stats</span><span class="p">.</span><span class="n">mean</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>results take average of Available MBytes.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>val it : Series&lt;string,float> =
-</span><span class='line'>  
-</span><span class='line'>PartitionKey         -> 6.35267776223776E+17 
-</span><span class='line'>RowKey               -> &lt;missing>            
-</span><span class='line'>Timestamp            -> &lt;missing>            
-</span><span class='line'>EventTickCount:int64 -> 6.35267776223776E+17 
-</span><span class='line'>DeploymentId         -> &lt;missing>            
-</span><span class='line'>Role                 -> &lt;missing>            
-</span><span class='line'>RoleInstance         -> &lt;missing>            
-</span><span class='line'>CounterName          -> &lt;missing>            
-</span><span class='line'>CounterValue         -> 674.888111888112</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>Note that instead of applying Stats.mean on all columns, you can apply only on CounterValue.</p></blockquote>
-
-<p>For example,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="n">groupedPerf</span><span class="o">.</span><span class="nn">Rows</span><span class="p">.</span><span class="err">[</span><span class="nc">Lookup1Of2</span> <span class="o">@</span><span class="s2">&quot;</span><span class="err">\</span><span class="s2">Memory</span><span class="err">\</span><span class="s2">Available MBytes&quot;</span><span class="o">].</span><span class="nn">Columns</span><span class="p">.</span><span class="err">[[&quot;</span><span class="nc">CounterName</span><span class="s2">&quot;; &quot;</span><span class="nc">CounterValue</span><span class="s2">&quot;]] </span>
-</span><span class='line'><span class="s2">|&gt; Stats.mean;;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>results</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>val it : Series&lt;string,float> =
-</span><span class='line'>  
-</span><span class='line'>CounterName  -> &lt;missing>     
-</span><span class='line'>CounterValue -> 318.286696141</span></code></pre></td></tr></table></div></figure>
-
 </div>
   
   

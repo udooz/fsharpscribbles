@@ -4,7 +4,7 @@
   <title><![CDATA[F# Scribbles]]></title>
   <link href="http://udooz.github.io//atom.xml" rel="self"/>
   <link href="http://udooz.github.io//"/>
-  <updated>2015-07-27T20:29:26+05:30</updated>
+  <updated>2015-08-06T00:04:59+05:30</updated>
   <id>http://udooz.github.io//</id>
   <author>
     <name><![CDATA[M Sheik Uduman Ali]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Copying or modifying immutable nested record]]></title>
+    <link href="http://udooz.github.io//blog/2015/08/copying-or-modifying-immutable-nested-record/"/>
+    <updated>2015-08-05T23:50:52+05:30</updated>
+    <id>http://udooz.github.io//blog/2015/08/copying-or-modifying-immutable-nested-record</id>
+    <content type="html"><![CDATA[<p>This is just a simple code snippet to show case how to copy or modify a immutable nested record type.</p>
+
+<p>Let us define a nested type</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">type</span> <span class="nc">Address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span><span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="n">street</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">city</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">zip</span><span class="o">:</span> <span class="kt">string</span><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">type</span> <span class="nc">Profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">address</span><span class="o">:</span> <span class="nc">Address</span><span class="o">}</span>
+</span><span class='line'>                 <span class="k">member</span> <span class="n">this</span><span class="o">.</span><span class="n">tos</span><span class="bp">()</span> <span class="o">=</span> <span class="n">sprintf</span> <span class="s2">&quot;%s. %d - %s, %s %s&quot;</span> <span class="n">this</span><span class="o">.</span><span class="n">name</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">no</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">street</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">city</span> <span class="n">this</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">zip</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Profile contains Address type.  Let us create an instance.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">profile</span> <span class="o">=</span> <span class="o">{</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sheik&quot;</span><span class="o">;</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">no</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Road&quot;</span><span class="o">;</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Chennai&quot;</span><span class="o">;</span> <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;600001&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to change the street name alone for profile</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='fsharp'><span class='line'><span class="k">let</span> <span class="n">mprofile</span> <span class="o">=</span> <span class="o">{</span><span class="n">profile</span> <span class="k">with</span> <span class="n">address</span> <span class="o">=</span> <span class="o">{</span><span class="n">i1</span><span class="o">.</span><span class="n">address</span> <span class="k">with</span> <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;Nungambakkam High Road&quot;</span><span class="o">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result will be</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>> profile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Road, Chennai 600001"
+</span><span class='line'>
+</span><span class='line'>> mprofile.tos()
+</span><span class='line'>val it : string = "Sheik. 1 - Nungambakkam High Road, Chennai 600001"</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Scala's Either sum type equivalent]]></title>
